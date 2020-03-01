@@ -1,13 +1,9 @@
 {
   "name": "react-native-timekeeper-new",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A beutiful timekeeper countdown animated for React Native",
   "main": "index.js",
   "repository": "https://github.com/Yamilquery/react-native-timekeeper.git",
   "author": "John Berd",
-  "license": "MIT",
-  "dependencies": {
-    "react": "16.3.1",
-    "react-native": "0.55.4"
-  }
+  "license": "MIT"
 }
