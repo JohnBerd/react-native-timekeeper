@@ -134,7 +134,7 @@ export default class TextTimeComponent extends React.Component<Default, Props, S
       : 0;
     const ellapsed = Math.floor((Date.now() - this.state.start) / 1000)
     const time = (this.props.reverseCount) ? ellapsed : this.state.time - 1;
-    const timeText = (this.props.reverseCount) ? secondsToHms(timeDisplay) : secondsToHms(timeDisplay);
+    const timeText = secondsToHms(this.state.timeDisplay);
     const callback = (time <= 0) ? this.props.onTimeElapsed : this.refreshTime;
     this.setState({
       ...getInitialStateText(this.props),
