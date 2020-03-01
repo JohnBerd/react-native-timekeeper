@@ -67,7 +67,7 @@ export function getInitialStateText(props: Props): State {
   const timeProgress = new Animated.Value(0);
   return {
     timeProgress,
-    start: Date().now(),
+    start: Date.now(),
     now: 0,
     time: props.seconds,
     timeReverse: 0,
