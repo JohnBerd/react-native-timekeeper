@@ -367,7 +367,7 @@ export default class PercentageCircle extends React.Component<Default, TimerProp
           startAt={this.props.startAt}
           onTimeElapsed={this.props.onTimeElapsed}
           active={this.state.active}
-          timeDisplay={this.state.timeDisplay}
+          timeDisplay={this.props.timeDisplay}
           isPausable={this.props.isPausable}
           reverseCount={this.props.reverseCount}
         />
