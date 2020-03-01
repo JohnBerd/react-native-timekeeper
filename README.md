@@ -17,13 +17,13 @@ Timekeeper is the most complete and lightweight component for React-Native that 
 ### Installation
 
 ```sh
-$ yarn add react-native-timekeeper
+$ yarn add react-native-timekeeper-new
 ```
 
 or
 
 ```sh
-$ npm install react-native-timekeeper --save
+$ npm install react-native-timekeeper-new --save
 ```
 
 ### Usage
@@ -81,6 +81,7 @@ render() {
 
 ### Author
 
-[Yamil Diaz Aguirre](https://github.com/Yamilquery)
+Xavier LE CUNFF
 
-Want to contribute? Great!
+Forked from [Yamil Diaz Aguirre](https://github.com/Yamilquery)
+Since its seems no longer maintained
