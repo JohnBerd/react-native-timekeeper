@@ -7,7 +7,7 @@
   "author": "John Berd",
   "license": "MIT",
   "dependencies": {
-    "react": "^16.3.1",
-    "react-native": "^0.55.4"
+    "react": "16.3.1",
+    "react-native": "0.55.4"
   }
 }
