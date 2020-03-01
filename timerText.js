@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
 type Props = {
   active: boolean,
   isPausable?: boolean,
+  timeDisplay: number,
   onTimeElapsed: Function,
   reverseCount: boolean,
   seconds: number,
@@ -35,6 +36,7 @@ type Props = {
 type Default = {
   active: boolean,
   isPausable: boolean,
+  timeDisplay: number,
   onTimeElapsed: Function,
   seconds: number,
   startAT: number,
@@ -67,6 +69,7 @@ export function getInitialStateText(props: Props): State {
   const timeProgress = new Animated.Value(0);
   return {
     timeProgress,
+    start: props.start,
     time: props.seconds,
     timeReverse: 0,
     timeText: (props.reverseCount) ? secondsToHms(0) : secondsToHms(props.seconds),
@@ -83,6 +86,7 @@ export default class TextTimeComponent extends React.Component<Default, Props, S
     seconds: 10,
     subTextStyle: null,
     textStyle: null,
+    timeDisplay: 10,
   }
 
   constructor(props: Props) {
@@ -94,7 +98,6 @@ export default class TextTimeComponent extends React.Component<Default, Props, S
   state: State = {
     ...getInitialStateText(this.props),
     timeReverse: this.props.startAt,
-    start: Date.now(),
   }
 
   componentDidMount = () => {
@@ -131,7 +134,7 @@ export default class TextTimeComponent extends React.Component<Default, Props, S
       : 0;
     const ellapsed = Math.floor((Date.now() - this.state.start) / 1000)
     const time = (this.props.reverseCount) ? ellapsed : this.state.time - 1;
-    const timeText = (this.props.reverseCount) ? secondsToHms(time) : secondsToHms(time);
+    const timeText = (this.props.reverseCount) ? secondsToHms(timeDisplay) : secondsToHms(timeDisplay);
     const callback = (time <= 0) ? this.props.onTimeElapsed : this.refreshTime;
     this.setState({
       ...getInitialStateText(this.props),

@@ -33,6 +33,7 @@ export type TimerProps = {
   color?: string,  // opt
   containerStyle?: ViewPropTypes.style,
   isPausable?: boolean,  // opt
+  timeDisplay?: Number,
   maxScale?: number,  // opt
   minScale?: number,  // opt
   onPause?: Function,  // opt
@@ -57,6 +58,7 @@ type Default = {
   color: string,  // opt
   containerStyle: ViewPropTypes.style,
   isPausable: boolean,  // opt
+  timeDisplay: number,
   maxScale: number,  // opt
   minScale: number,  // opt
   onPause: Function,  // opt
@@ -160,6 +162,7 @@ export default class PercentageCircle extends React.Component<Default, TimerProp
     color: '#f00',
     containerStyle: null,
     isPausable: false,
+    timeDisplay: 10,
     maxScale: 1,
     minScale: 0.7,
     onPause: () => null,
@@ -364,6 +367,7 @@ export default class PercentageCircle extends React.Component<Default, TimerProp
           startAt={this.props.startAt}
           onTimeElapsed={this.props.onTimeElapsed}
           active={this.state.active}
+          timeDisplay={this.state.timeDisplay}
           isPausable={this.props.isPausable}
           reverseCount={this.props.reverseCount}
         />
