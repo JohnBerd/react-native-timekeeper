@@ -67,8 +67,6 @@ export function getInitialStateText(props: Props): State {
   const timeProgress = new Animated.Value(0);
   return {
     timeProgress,
-    start: new Date(),
-    now: 0,
     time: props.seconds,
     timeReverse: 0,
     timeText: (props.reverseCount) ? secondsToHms(0) : secondsToHms(props.seconds),
@@ -130,7 +128,6 @@ export default class TextTimeComponent extends React.Component<Default, Props, S
     const timeReverse = (this.props.reverseCount)
       ? this.state.timeReverse + 1
       : 0;
-    const ellapsed = Math.floor((Date.now() - this.state.start) / 1000)
     const time = (this.props.reverseCount) ? ellapsed : this.state.time - 1;
     const timeText = (this.props.reverseCount) ? secondsToHms(timeReverse) : secondsToHms(time);
     const callback = (time <= 0) ? this.props.onTimeElapsed : this.refreshTime;
