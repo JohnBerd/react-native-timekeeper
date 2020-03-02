@@ -65,84 +65,8 @@ const secondsToHms = (rd: number): string => {
   return `${mDisplay}:${sDisplay}`;
 };
 
-export function getInitialStateText(props: Props): State {
-  const timeProgress = new Animated.Value(0);
-  return {
-    timeProgress,
-    start: props.start,
-    time: props.seconds,
-    timeReverse: 0,
-    timeText: (props.reverseCount) ? secondsToHms(0) : secondsToHms(props.seconds),
-    reverseCount: props.reverseCount,
-    active: props.active,
-  };
-}
 
 export default class TextTimeComponent extends React.Component<Default, Props, State> {
-  static defaultProps = {
-    active: true,
-    isPausable: false,
-    onTimeElapsed: () => null,
-    seconds: 10,
-    subTextStyle: null,
-    textStyle: null,
-    timeDisplay: 10,
-  }
-
-  constructor(props: Props) {
-    super(props);
-    // this.isStarted = false;
-    this.state = getInitialStateText(props);
-  }
-
-  state: State = {
-    ...getInitialStateText(this.props),
-    timeReverse: this.props.startAt,
-  }
-
-  componentDidMount = () => {
-    this.refreshTime();
-    this.setState({
-      timeReverse: this.props.startAt,
-    });
-  };
-
-  componentWillReceiveProps = (nextProps: Props) => {
-    if (nextProps.startAt > 0) {
-      this.state.timeReverse = nextProps.startAt;
-      this.setState({
-        timeReverse: nextProps.startAt,
-      });
-    }
-  };
-
-  componentWillUnmount = () => {
-    this.state.timeProgress.stopAnimation();
-  };
-
-  refreshTime = () => {
-    Animated.timing(this.state.timeProgress, {
-      toValue: 100,
-      duration: 1000,
-      easing: Easing.linear,
-    }).start(this.updateTime);
-  }
-
-  updateTime = () => {
-    const timeReverse = (this.props.reverseCount)
-      ? this.state.timeReverse + 1
-      : 0;
-    const ellapsed = Math.floor((Date.now() - this.state.start) / 1000)
-    const time = (this.props.reverseCount) ? ellapsed : this.state.time - 1;
-    const timeText = secondsToHms(this.props.timeDisplay);
-    const callback = (time <= 0) ? this.props.onTimeElapsed : this.refreshTime;
-    this.setState({
-      ...getInitialStateText(this.props),
-      time,
-      timeReverse,
-      timeText,
-    }, callback);
-  }
 
   renderSubText() {
     const { active } = this.props;
@@ -170,7 +94,7 @@ export default class TextTimeComponent extends React.Component<Default, Props, S
           numberOfLines={1} ellipsizeMode="head"
           style={[this.props.textStyle, active ? { opacity: 1 } : { opacity: 0.8 }]}
         >
-          {this.state.timeText}
+          {secondsToHms(this.props.timeDisplay)}
         </Text>
         {this.renderSubText()}
       </View>
